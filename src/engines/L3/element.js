@@ -642,10 +642,6 @@ const Element = {
         }
       }
     }
-
-    if (this.config.parent.props && this.config.parent.props.__layout === true) {
-      this.config.parent.triggerLayout(this.config.parent.props)
-    }
   },
   animate(prop, value, transition) {
     // check if a transition is already scheduled to run on the same prop
