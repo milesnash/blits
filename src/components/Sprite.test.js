@@ -14,7 +14,7 @@ Object.assign(renderer, engineRenderer)
 engineRenderer.createNode = () => new EventEmitter()
 
 function createSprite() {
-  return Sprite()({}, { node: { width: 1920, height: 1080 } })
+  return Sprite()({}, { node: { width: 1920, height: 1080 }, set: () => {} })
 }
 
 test('Sprite - Type', (assert) => {
