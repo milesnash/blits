@@ -69,7 +69,7 @@ test('$clearTimeout method', (assert) => {
   assert.equal(component[symbols.timeouts].length, 0, 'Removes timeout from array')
 
   setTimeout(() => {
-    assert.false(called, 'Timeout does not execute after clear')
+    assert.equal(called, false, 'Timeout does not execute after clear')
     assert.end()
   }, 100)
 })
@@ -98,8 +98,8 @@ test('$clearTimeouts method', (assert) => {
   assert.equal(component[symbols.timeouts].length, 0, 'Clears all timeouts from array')
 
   setTimeout(() => {
-    assert.false(called1, 'First timeout does not execute')
-    assert.false(called2, 'Second timeout does not execute')
+    assert.equal(called1, false, 'First timeout does not execute')
+    assert.equal(called2, false, 'Second timeout does not execute')
     assert.end()
   }, 100)
 })
@@ -149,7 +149,7 @@ test('$clearInterval method', (assert) => {
   assert.equal(component[symbols.intervals].length, 0, 'Removes interval from array')
 
   setTimeout(() => {
-    assert.false(called, 'Interval does not execute after clear')
+    assert.equal(called, false, 'Interval does not execute after clear')
     assert.end()
   }, 150)
 })
@@ -178,8 +178,8 @@ test('$clearIntervals method', (assert) => {
   assert.equal(component[symbols.intervals].length, 0, 'Clears all intervals from array')
 
   setTimeout(() => {
-    assert.false(called1, 'First interval does not execute')
-    assert.false(called2, 'Second interval does not execute')
+    assert.equal(called1, false, 'First interval does not execute')
+    assert.equal(called2, false, 'Second interval does not execute')
     assert.end()
   }, 150)
 })
