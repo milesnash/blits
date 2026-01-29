@@ -233,7 +233,7 @@ test('processDirectory - should handle empty directory', (assert) => {
 
 test('processFile - should create backup with .orig.js extension', (assert) => {
   const filePath = path.resolve(process.cwd(), 'src', 'component.js')
-  const expectedBackup = path.resolve(process.cwd(), 'Component.orig.js')
+  const expectedBackup = path.resolve(process.cwd(), 'src', 'component.orig.js')
   const readStub = sinon.stub(fs, 'readFileSync').returns('const test = "code"')
   const writeStub = sinon.stub(fs, 'writeFileSync')
   const copyStub = sinon.stub(fs, 'copyFileSync')
