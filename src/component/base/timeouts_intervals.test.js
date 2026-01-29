@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import test from 'tape'
+import { test } from 'tap'
 import timeoutsIntervals from './timeouts_intervals.js'
 import symbols from '../../lib/symbols.js'
 

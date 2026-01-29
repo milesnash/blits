@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import test from 'tape'
+import { test } from 'tap'
 import { matchHash, getHash, to, navigate, state } from './router.js'
 import { stage } from '../launch.js'
 import Component from '../component.js'

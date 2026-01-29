@@ -32,9 +32,9 @@
     "./blitsFileConverter": "./src/lib/blitsfileconverter/blitsfileconverter.js"
   },
   "scripts": {
-    "test": "c8 node scripts/runTests.js",
+    "test": "tape -r global-jsdom \"{src,scripts}/**/*.test.js\" | faucet",
     "test:ci": "c8 npm run test:run",
-    "test:run": "node -r global-jsdom/register ./node_modules/.bin/tape '{,!(node_modules|packages)/**/}*.test.js' | tap-diff",
+    "test:run": "node -r global-jsdom/register ./node_modules/.bin/tape '{,!(node_modules|packages)/**/}*.test.js'",
     "lint": "node scripts/lint.js",
     "lint:fix": "node scripts/lint.js fix",
     "prepublishOnly": "node scripts/prepublishOnly.js",
@@ -69,8 +69,7 @@
     "lint-staged": "^15.5.0",
     "prettier": "^3.6.2",
     "sinon": "^21.0.0",
-    "tap-diff": "^0.1.1",
-    "tape": "^5.5.0"
+    "tap": "^21.5.0"
   },
   "dependencies": {
     "@lightningjs/msdf-generator": "^1.2.0",

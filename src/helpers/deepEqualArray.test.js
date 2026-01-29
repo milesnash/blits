@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import test from 'tape'
+import { test } from 'tap'
 import deepEqual from './deepEqualArray.js'
 
 test('Type', (assert) => {

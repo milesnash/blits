@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import test from 'tape'
+import { test } from 'tap'
 import Focus from './focus.js'
 import Component from './component.js'
 import { stage } from './launch.js'

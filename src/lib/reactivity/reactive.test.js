@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import test from 'tape'
+import { test } from 'tap'
 import { reactive } from './reactive.js'
 import { effect, pauseTracking, resumeTracking } from './effect.js'
 import symbols from '../symbols.js'

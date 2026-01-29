@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import test from 'tape'
+import { test } from 'tap'
 import Component from './component.js'
 import { initLog } from './lib/log.js'
 import symbols from './lib/symbols.js'

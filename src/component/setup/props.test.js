@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import test from 'tape'
+import { test } from 'tap'
 import propsFn from './props.js'
 import { initLog } from '../../lib/log.js'
 import Settings from '../../settings.js'

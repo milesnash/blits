@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import test from 'tape'
+import { test } from 'tap'
 import element from './element.js'
 import { renderer } from './launch.js'
 import { EventEmitter } from 'node:events'

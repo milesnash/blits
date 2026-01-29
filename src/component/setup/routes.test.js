@@ -1,4 +1,4 @@
-import test from 'tape'
+import { test } from 'tap'
 import routes from './routes.js'
 import symbols from '../../lib/symbols.js'
 

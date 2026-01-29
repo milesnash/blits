@@ -1,4 +1,4 @@
-import test from 'tape'
+import { test } from 'tap'
 import Storage from './localCookie.js'
 
 const ls = new Storage()

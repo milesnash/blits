@@ -1,4 +1,4 @@
-import test from 'tape'
+import { test } from 'tap'
 import methods from './methods.js'
 import symbols from '../../lib/symbols.js'
 import Settings from '../../settings.js'
