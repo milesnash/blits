@@ -15,7 +15,7 @@ test('Function plugin registration', (assert) => {
   )
 
   registerPlugin(mockPlugin, 'testPluginWithOptions', options)
-  assert.deepEqual(
+  assert.same(
     plugins.testPluginWithOptions.options,
     options,
     'Function plugin registered with custom options'

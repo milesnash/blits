@@ -53,7 +53,7 @@ test('Parse simple single tag', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -74,7 +74,7 @@ test('Parse simple tag and simple nested tag', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -92,7 +92,7 @@ test('Parse simple single tag with static attributes', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -117,7 +117,7 @@ test('Parse tag with attributes and nested tag with attributes', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -153,7 +153,7 @@ test('Parse tag with attributes and 2 nested tags with attributes', (assert) => 
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -202,7 +202,7 @@ test('Parse tag with attributes and deep nested tag with attributes', (assert) =
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -220,7 +220,7 @@ test('Parse simple single tag with dynamic attributes', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -241,7 +241,7 @@ test('Parse tag with attributes and reactive attributes', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -260,7 +260,7 @@ test("Parse simple single tag where one of the attributes has a dash in it's nam
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -281,7 +281,7 @@ test('Parse nested self closing tag', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -308,7 +308,7 @@ test('Parse multiple nested self closing tags', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -325,7 +325,7 @@ test('Parse attributes which values have spaces in it', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -353,7 +353,7 @@ test('Parse attributes with an expression in it', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -392,7 +392,7 @@ test('Parse template with commented tag (and skip it)', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -425,7 +425,7 @@ test('Parse template with comment spanned across multiple tags (and skip it)', (
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -466,7 +466,7 @@ test('Parse template with enclosing comment (and skip it)', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -491,7 +491,7 @@ test('Parse template with for loop', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -522,7 +522,7 @@ test('Parse template with a conditional (if-statement)', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -559,7 +559,7 @@ test('Parse template with a visibility toggle (show-statement)', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -594,7 +594,7 @@ test('Parse template with a nameless tag', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -614,7 +614,7 @@ test('Parse template with a transition argument (single value)', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -634,7 +634,7 @@ test('Parse template with a transition argument (object)', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -654,7 +654,7 @@ test('Parse template with a different modifier', (assert) => {
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -674,7 +674,7 @@ test('Parse template with a full transition object (without the transition modif
   }
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -731,7 +731,7 @@ test('Parse template with attributes with values spread over multiple lines', (a
 
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -762,7 +762,7 @@ test('Parse template with inline text between tags', (assert) => {
 
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -823,7 +823,7 @@ test('Parse template with multiple inline texts between different tags', (assert
 
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -854,7 +854,7 @@ test('Parse template with attribute name starts with @ character', (assert) => {
 
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -911,7 +911,7 @@ test('Parse template with attribute values with delimited either single or doubl
 
   const actual = parser(template)
 
-  assert.deepEqual(actual, expected, 'Parser should return object representation of template')
+  assert.same(actual, expected, 'Parser should return object representation of template')
   assert.end()
 })
 
@@ -1381,7 +1381,7 @@ test('Parse template with color and effects attributes and parsing should conver
 
   const actual = parser(template)
 
-  assert.deepEqual(
+  assert.same(
     actual,
     expected,
     'Parser should return object representation of template with color values converted'

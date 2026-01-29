@@ -288,8 +288,8 @@ test('Methods - Validate destroy method behavior', (assert) => {
 
   // Following properties can still exists in component instance but with reset/cleared values
   assert.equal(component.eol, true, 'Component should be marked as end of life')
-  assert.deepEqual(component.lifecycle, {}, 'Lifecycle state should be destroy')
-  assert.deepEqual(component[symbols.state], {}, 'symbol state should be deleted')
+  assert.same(component.lifecycle, {}, 'Lifecycle state should be destroy')
+  assert.same(component[symbols.state], {}, 'symbol state should be deleted')
   assert.equal(
     component[symbols.rendererEventListeners],
     null,
@@ -297,7 +297,7 @@ test('Methods - Validate destroy method behavior', (assert) => {
   )
   assert.equal(component[symbols.timeouts].length, 0, 'All timeouts should be cleared')
   assert.equal(component[symbols.intervals].length, 0, 'All intervals should be cleared')
-  assert.deepEqual(component[symbols.props], {}, 'symbol props should be cleared')
+  assert.same(component[symbols.props], {}, 'symbol props should be cleared')
 
   // Following properties should be deleted from component instance
   assert.equal(component[symbols.effects], undefined, 'symbol effects should be deleted')

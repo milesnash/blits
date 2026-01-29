@@ -88,7 +88,7 @@ test('Children', (assert) => {
   const result = el.children
 
   assert.equal(result.length, 2, 'Children amount should be correct')
-  assert.deepEqual(
+  assert.same(
     result.map((c) => c.id),
     [1, 4],
     'Children should be correct'
