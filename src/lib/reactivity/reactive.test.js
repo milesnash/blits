@@ -253,7 +253,7 @@ test('Reactive - Get raw object from proxy', (assert) => {
     'Should return the original object from the proxy using the raw symbol'
   )
 
-  assert.notEqual(originalObj, proxiedObj, 'Original object should not be equal to proxied object')
+  assert.not(originalObj, proxiedObj, 'Original object should not be equal to proxied object')
   assert.end()
 })
 
