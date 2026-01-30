@@ -15,14 +15,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { test } from 'tap'
+import t from 'tap'
 import parser from './parser.js'
 import symbols from '../symbols.js'
 const { componentType } = symbols
 import { initLog } from '../log.js'
 initLog()
 
-test('Type', (assert) => {
+t.test('Type', (assert) => {
   const expected = 'function'
   const actual = typeof parser
 
@@ -30,7 +30,7 @@ test('Type', (assert) => {
   assert.end()
 })
 
-test('Returns an object', (assert) => {
+t.test('Returns an object', (assert) => {
   const result = parser()
   const expected = 'object'
   const actual = typeof result
@@ -41,7 +41,7 @@ test('Returns an object', (assert) => {
   assert.end()
 })
 
-test('Parse simple single tag', (assert) => {
+t.test('Parse simple single tag', (assert) => {
   const template = '<Component></Component>'
 
   const expected = {
@@ -57,7 +57,7 @@ test('Parse simple single tag', (assert) => {
   assert.end()
 })
 
-test('Parse simple tag and simple nested tag', (assert) => {
+t.test('Parse simple tag and simple nested tag', (assert) => {
   const template = '<Component><Element></Element></Component>'
 
   const expected = {
@@ -78,7 +78,7 @@ test('Parse simple tag and simple nested tag', (assert) => {
   assert.end()
 })
 
-test('Parse simple single tag with static attributes', (assert) => {
+t.test('Parse simple single tag with static attributes', (assert) => {
   const template = '<Component x="10" y="20"></Component>'
 
   const expected = {
@@ -96,7 +96,7 @@ test('Parse simple single tag with static attributes', (assert) => {
   assert.end()
 })
 
-test('Parse tag with attributes and nested tag with attributes', (assert) => {
+t.test('Parse tag with attributes and nested tag with attributes', (assert) => {
   const template = '<Component x="10" y="20"><Element w="100" h="300"></Element></Component>'
 
   const expected = {
@@ -121,7 +121,7 @@ test('Parse tag with attributes and nested tag with attributes', (assert) => {
   assert.end()
 })
 
-test('Parse tag with attributes and 2 nested tags with attributes', (assert) => {
+t.test('Parse tag with attributes and 2 nested tags with attributes', (assert) => {
   const template = `
     <Component x="10" y="20">
       <Element w="100" h="300" x="0"></Element>
@@ -157,7 +157,7 @@ test('Parse tag with attributes and 2 nested tags with attributes', (assert) => 
   assert.end()
 })
 
-test('Parse tag with attributes and deep nested tag with attributes', (assert) => {
+t.test('Parse tag with attributes and deep nested tag with attributes', (assert) => {
   const template = `
     <Component x="10" y="20">
       <Element w="100" h="300" x="0"></Element>
@@ -206,7 +206,7 @@ test('Parse tag with attributes and deep nested tag with attributes', (assert) =
   assert.end()
 })
 
-test('Parse simple single tag with dynamic attributes', (assert) => {
+t.test('Parse simple single tag with dynamic attributes', (assert) => {
   const template = '<Component x="$x" y="$y"></Component>'
 
   const expected = {
@@ -224,7 +224,7 @@ test('Parse simple single tag with dynamic attributes', (assert) => {
   assert.end()
 })
 
-test('Parse tag with attributes and reactive attributes', (assert) => {
+t.test('Parse tag with attributes and reactive attributes', (assert) => {
   const template = '<Component x="10" y="20" :w="foo" :h="test" test="ok"></Component>'
 
   const expected = {
@@ -245,7 +245,7 @@ test('Parse tag with attributes and reactive attributes', (assert) => {
   assert.end()
 })
 
-test("Parse simple single tag where one of the attributes has a dash in it's name", (assert) => {
+t.test("Parse simple single tag where one of the attributes has a dash in it's name", (assert) => {
   const template = '<Component x="10" y="20" my-Attribute="this"></Component>'
 
   const expected = {
@@ -264,7 +264,7 @@ test("Parse simple single tag where one of the attributes has a dash in it's nam
   assert.end()
 })
 
-test('Parse nested self closing tag', (assert) => {
+t.test('Parse nested self closing tag', (assert) => {
   const template = '<Component><Input /></Component>'
 
   const expected = {
@@ -285,7 +285,7 @@ test('Parse nested self closing tag', (assert) => {
   assert.end()
 })
 
-test('Parse multiple nested self closing tags', (assert) => {
+t.test('Parse multiple nested self closing tags', (assert) => {
   const template = '<Component><Input /><Input /><Input /></Component>'
 
   const expected = {
@@ -312,7 +312,7 @@ test('Parse multiple nested self closing tags', (assert) => {
   assert.end()
 })
 
-test('Parse attributes which values have spaces in it', (assert) => {
+t.test('Parse attributes which values have spaces in it', (assert) => {
   const template = '<Component attribute="I have spaces"></Component>'
 
   const expected = {
@@ -329,7 +329,7 @@ test('Parse attributes which values have spaces in it', (assert) => {
   assert.end()
 })
 
-test('Parse attributes with an expression in it', (assert) => {
+t.test('Parse attributes with an expression in it', (assert) => {
   const template = `
     <Component
       :attribute1="$foo * 2"
@@ -357,7 +357,7 @@ test('Parse attributes with an expression in it', (assert) => {
   assert.end()
 })
 
-test('Parse template with commented tag (and skip it)', (assert) => {
+t.test('Parse template with commented tag (and skip it)', (assert) => {
   const template = `
     <Component x="10" y="20">
       <!--Element w="100" h="300" x="0"></Element-->
@@ -396,7 +396,7 @@ test('Parse template with commented tag (and skip it)', (assert) => {
   assert.end()
 })
 
-test('Parse template with comment spanned across multiple tags (and skip it)', (assert) => {
+t.test('Parse template with comment spanned across multiple tags (and skip it)', (assert) => {
   const template = `
     <Component x="10" y="20">
       <!--Element w="100" h="300" x="0"></Element-->
@@ -429,7 +429,7 @@ test('Parse template with comment spanned across multiple tags (and skip it)', (
   assert.end()
 })
 
-test('Parse template with enclosing comment (and skip it)', (assert) => {
+t.test('Parse template with enclosing comment (and skip it)', (assert) => {
   const template = `
     <Component x="10" y="20">
       <Element w="100" h="300" x="0"></Element>
@@ -470,7 +470,7 @@ test('Parse template with enclosing comment (and skip it)', (assert) => {
   assert.end()
 })
 
-test('Parse template with for loop', (assert) => {
+t.test('Parse template with for loop', (assert) => {
   const template = `
     <List>
       <ListItem :for="item in $items" />
@@ -495,7 +495,7 @@ test('Parse template with for loop', (assert) => {
   assert.end()
 })
 
-test('Parse template with a conditional (if-statement)', (assert) => {
+t.test('Parse template with a conditional (if-statement)', (assert) => {
   const template = `
     <Component :if="$loggedIn === true">
       <Text value="Welcome" />
@@ -526,7 +526,7 @@ test('Parse template with a conditional (if-statement)', (assert) => {
   assert.end()
 })
 
-test('Parse template with a visibility toggle (show-statement)', (assert) => {
+t.test('Parse template with a visibility toggle (show-statement)', (assert) => {
   const template = `
     <Poster w="200" h="500">
       <Label :text="$text" />
@@ -563,7 +563,7 @@ test('Parse template with a visibility toggle (show-statement)', (assert) => {
   assert.end()
 })
 
-test('Parse template with a nameless tag', (assert) => {
+t.test('Parse template with a nameless tag', (assert) => {
   const template = `
     <>
       <Component x="50" y="20">
@@ -598,7 +598,7 @@ test('Parse template with a nameless tag', (assert) => {
   assert.end()
 })
 
-test('Parse template with a transition argument (single value)', (assert) => {
+t.test('Parse template with a transition argument (single value)', (assert) => {
   const template = `
     <Element x.transition="$offset" y="200">
     </Element>`
@@ -618,7 +618,7 @@ test('Parse template with a transition argument (single value)', (assert) => {
   assert.end()
 })
 
-test('Parse template with a transition argument (object)', (assert) => {
+t.test('Parse template with a transition argument (object)', (assert) => {
   const template = `
     <Element :x.transition="{v: $offset, d: 2000}" y="200">
     </Element>`
@@ -638,7 +638,7 @@ test('Parse template with a transition argument (object)', (assert) => {
   assert.end()
 })
 
-test('Parse template with a different modifier', (assert) => {
+t.test('Parse template with a different modifier', (assert) => {
   const template = `
     <Element x.modifier="ok" y="200">
     </Element>`
@@ -658,27 +658,30 @@ test('Parse template with a different modifier', (assert) => {
   assert.end()
 })
 
-test('Parse template with a full transition object (without the transition modifier)', (assert) => {
-  const template = `
+t.test(
+  'Parse template with a full transition object (without the transition modifier)',
+  (assert) => {
+    const template = `
     <Element :x="{transition: {v: $offset, d: 2000, p: 100}}" y="200">
     </Element>`
 
-  const expected = {
-    children: [
-      {
-        [componentType]: 'Element',
-        ':x': '{transition: {v: $offset, d: 2000, p: 100}}',
-        y: '200',
-      },
-    ],
+    const expected = {
+      children: [
+        {
+          [componentType]: 'Element',
+          ':x': '{transition: {v: $offset, d: 2000, p: 100}}',
+          y: '200',
+        },
+      ],
+    }
+    const actual = parser(template)
+
+    assert.same(actual, expected, 'Parser should return object representation of template')
+    assert.end()
   }
-  const actual = parser(template)
+)
 
-  assert.same(actual, expected, 'Parser should return object representation of template')
-  assert.end()
-})
-
-test('Parse template with attributes with values spread over multiple lines', (assert) => {
+t.test('Parse template with attributes with values spread over multiple lines', (assert) => {
   const template = `
   <Component>
     <Element
@@ -735,7 +738,7 @@ test('Parse template with attributes with values spread over multiple lines', (a
   assert.end()
 })
 
-test('Parse template with inline text between tags', (assert) => {
+t.test('Parse template with inline text between tags', (assert) => {
   const template = `
   <Component>
     <Element w="160" h="160" x="40" y="40" color="#fb923c">Lorem ipsum</Element>
@@ -766,7 +769,7 @@ test('Parse template with inline text between tags', (assert) => {
   assert.end()
 })
 
-test('Parse template with multiple inline texts between different tags', (assert) => {
+t.test('Parse template with multiple inline texts between different tags', (assert) => {
   const template = `
   <Component>
     <Element w="160" h="160" x="40" y="40" color="#fb923c">Lorem ipsum</Element>
@@ -827,7 +830,7 @@ test('Parse template with multiple inline texts between different tags', (assert
   assert.end()
 })
 
-test('Parse template with attribute name starts with @ character', (assert) => {
+t.test('Parse template with attribute name starts with @ character', (assert) => {
   const template = `
   <Component>
     <Element w="160" h="160" x="40" y="40" color="#fb923c" @loaded="@loaded" />
@@ -858,8 +861,10 @@ test('Parse template with attribute name starts with @ character', (assert) => {
   assert.end()
 })
 
-test('Parse template with attribute values with delimited either single or double quotes', (assert) => {
-  const template = `
+t.test(
+  'Parse template with attribute values with delimited either single or double quotes',
+  (assert) => {
+    const template = `
   <Component>
     <Element
       w='160' h="160" x='40' y='40' color="#fb923c"
@@ -882,40 +887,41 @@ test('Parse template with attribute values with delimited either single or doubl
     />
   </Component>`
 
-  const expected = {
-    children: [
-      {
-        [componentType]: 'Component',
-        children: [
-          {
-            [componentType]: 'Element',
-            w: '160',
-            h: '160',
-            x: '40',
-            y: '40',
-            color: '0xfb923cff',
-            ':effects': '[$shader( "radius", {radius: 44} )]',
-          },
-          {
-            [componentType]: 'Element',
-            w: '120',
-            h: '120',
-            x: '100',
-            y: '100',
-            ':effects': "[ $shader( 'radius', { radius: 45 } ) ]",
-          },
-        ],
-      },
-    ],
+    const expected = {
+      children: [
+        {
+          [componentType]: 'Component',
+          children: [
+            {
+              [componentType]: 'Element',
+              w: '160',
+              h: '160',
+              x: '40',
+              y: '40',
+              color: '0xfb923cff',
+              ':effects': '[$shader( "radius", {radius: 44} )]',
+            },
+            {
+              [componentType]: 'Element',
+              w: '120',
+              h: '120',
+              x: '100',
+              y: '100',
+              ':effects': "[ $shader( 'radius', { radius: 45 } ) ]",
+            },
+          ],
+        },
+      ],
+    }
+
+    const actual = parser(template)
+
+    assert.same(actual, expected, 'Parser should return object representation of template')
+    assert.end()
   }
+)
 
-  const actual = parser(template)
-
-  assert.same(actual, expected, 'Parser should return object representation of template')
-  assert.end()
-})
-
-test('Parse template with multiple top level elements and parsing should fail', (assert) => {
+t.test('Parse template with multiple top level elements and parsing should fail', (assert) => {
   const template = `
   <Component>
     <Element
@@ -955,7 +961,7 @@ test('Parse template with multiple top level elements and parsing should fail', 
   assert.end()
 })
 
-test('Parse template with unclosed tag and parsing should fail', (assert) => {
+t.test('Parse template with unclosed tag and parsing should fail', (assert) => {
   const template = `
   <Component>
     <Element>
@@ -975,7 +981,7 @@ test('Parse template with unclosed tag and parsing should fail', (assert) => {
   assert.end()
 })
 
-test('Parse template with multiple unclosed tags and parsing should fail', (assert) => {
+t.test('Parse template with multiple unclosed tags and parsing should fail', (assert) => {
   const template = `
   <Component>
     <Element>
@@ -1000,7 +1006,7 @@ test('Parse template with multiple unclosed tags and parsing should fail', (asse
   assert.end()
 })
 
-test('Parse template with an unclosed tag and parsing should fail', (assert) => {
+t.test('Parse template with an unclosed tag and parsing should fail', (assert) => {
   const template = `
   <Component>
   `
@@ -1018,7 +1024,7 @@ test('Parse template with an unclosed tag and parsing should fail', (assert) => 
   assert.end()
 })
 
-test('Parse template with an invalid closing tag and parsing should fail', (assert) => {
+t.test('Parse template with an invalid closing tag and parsing should fail', (assert) => {
   const template = `
   <Component>
     <Element>
@@ -1040,27 +1046,34 @@ test('Parse template with an invalid closing tag and parsing should fail', (asse
   assert.end()
 })
 
-test('Parse template with multiple self-closing tags at the top level and parsing should fail', (assert) => {
-  const template = `
+t.test(
+  'Parse template with multiple self-closing tags at the top level and parsing should fail',
+  (assert) => {
+    const template = `
   <Component/>
   <Element/>
   `
 
-  try {
-    parser(template)
-    assert.fail('Parser should throw TemplateStructureError:MultipleTopLevelTags')
-  } catch (error) {
-    assert.equal(error.name, 'TemplateStructureError', 'Parser should throw TemplateStructureError')
-    assert.ok(
-      error.message.startsWith('MultipleTopLevelTags'),
-      'Parser should throw TemplateStructureError:MultipleTopLevelTags'
-    )
+    try {
+      parser(template)
+      assert.fail('Parser should throw TemplateStructureError:MultipleTopLevelTags')
+    } catch (error) {
+      assert.equal(
+        error.name,
+        'TemplateStructureError',
+        'Parser should throw TemplateStructureError'
+      )
+      assert.ok(
+        error.message.startsWith('MultipleTopLevelTags'),
+        'Parser should throw TemplateStructureError:MultipleTopLevelTags'
+      )
+    }
+
+    assert.end()
   }
+)
 
-  assert.end()
-})
-
-test('Parse template with a closing tag at the beginning and parsing should fail', (assert) => {
+t.test('Parse template with a closing tag at the beginning and parsing should fail', (assert) => {
   const template = `
   </Element>
   <Component>
@@ -1082,29 +1095,32 @@ test('Parse template with a closing tag at the beginning and parsing should fail
   assert.end()
 })
 
-test('Parse template with a closing tag that has attributes and parsing should fail', (assert) => {
-  const template = `
+t.test(
+  'Parse template with a closing tag that has attributes and parsing should fail',
+  (assert) => {
+    const template = `
   <Component>
     <Text>Lorem ipsum dolor sit amet</Text>
     <Element></Element x="200">
   </Component>
   `
 
-  try {
-    parser(template)
-    assert.fail('Parser should throw TemplateParseError:AttributesInClosingTag')
-  } catch (error) {
-    assert.equal(error.name, 'TemplateParseError', 'Parser should throw TemplateParseError')
-    assert.ok(
-      error.message.startsWith('AttributesInClosingTag'),
-      'Parser should throw TemplateParseError:AttributesInClosingTag'
-    )
+    try {
+      parser(template)
+      assert.fail('Parser should throw TemplateParseError:AttributesInClosingTag')
+    } catch (error) {
+      assert.equal(error.name, 'TemplateParseError', 'Parser should throw TemplateParseError')
+      assert.ok(
+        error.message.startsWith('AttributesInClosingTag'),
+        'Parser should throw TemplateParseError:AttributesInClosingTag'
+      )
+    }
+
+    assert.end()
   }
+)
 
-  assert.end()
-})
-
-test('Parse template with an invalid tag and parsing should fail', (assert) => {
+t.test('Parse template with an invalid tag and parsing should fail', (assert) => {
   const template = `
   <@Element x="200" />
   `
@@ -1123,7 +1139,7 @@ test('Parse template with an invalid tag and parsing should fail', (assert) => {
   assert.end()
 })
 
-test('Parse template with an invalid attribute value and parsing should fail', (assert) => {
+t.test('Parse template with an invalid attribute value and parsing should fail', (assert) => {
   const template = `
   <Element x=" />
   `
@@ -1142,7 +1158,7 @@ test('Parse template with an invalid attribute value and parsing should fail', (
   assert.end()
 })
 
-test('Parse template with an invalid attribute name and parsing should fail', (assert) => {
+t.test('Parse template with an invalid attribute name and parsing should fail', (assert) => {
   const template = `
   <Element invalid^attribute="hello" />
   `
@@ -1161,99 +1177,110 @@ test('Parse template with an invalid attribute name and parsing should fail', (a
   assert.end()
 })
 
-test('Parse template with an invalid attribute name by providing parent component and parsing should fail', (assert) => {
-  const template = `
+t.test(
+  'Parse template with an invalid attribute name by providing parent component and parsing should fail',
+  (assert) => {
+    const template = `
   <Element invalid^attribute="hello" />
   `
 
-  try {
-    parser(template, 'Item', {
-      [componentType]: 'Section',
-      parent: {
-        [componentType]: 'List',
+    try {
+      parser(template, 'Item', {
+        [componentType]: 'Section',
         parent: {
-          [componentType]: 'Menu',
+          [componentType]: 'List',
           parent: {
-            [componentType]: 'Blits.App',
+            [componentType]: 'Menu',
+            parent: {
+              [componentType]: 'Blits.App',
+            },
           },
         },
-      },
-    })
-    assert.fail('Parser should throw TemplateParseError:InvalidAttribute')
-  } catch (error) {
-    assert.equal(error.name, 'TemplateParseError', 'Parser should throw TemplateParseError')
-    assert.ok(
-      error.message.startsWith('InvalidAttribute'),
-      'Parser should throw TemplateParseError:InvalidAttribute'
-    )
-    assert.ok(
-      error.message.includes('Blits.App/Menu/List/Section/Item'),
-      'Error message should contain the component hierarchy'
-    )
+      })
+      assert.fail('Parser should throw TemplateParseError:InvalidAttribute')
+    } catch (error) {
+      assert.equal(error.name, 'TemplateParseError', 'Parser should throw TemplateParseError')
+      assert.ok(
+        error.message.startsWith('InvalidAttribute'),
+        'Parser should throw TemplateParseError:InvalidAttribute'
+      )
+      assert.ok(
+        error.message.includes('Blits.App/Menu/List/Section/Item'),
+        'Error message should contain the component hierarchy'
+      )
+    }
+
+    assert.end()
   }
+)
 
-  assert.end()
-})
-
-test('Parse template with an invalid attribute name by providing parent component without component name and parsing should fail', (assert) => {
-  const template = `
+t.test(
+  'Parse template with an invalid attribute name by providing parent component without component name and parsing should fail',
+  (assert) => {
+    const template = `
   <Element invalid^attribute="hello" />
   `
 
-  try {
-    parser(template, null, {
-      [componentType]: 'Section',
-      parent: {
-        [componentType]: 'List',
+    try {
+      parser(template, null, {
+        [componentType]: 'Section',
         parent: {
-          [componentType]: 'Menu',
+          [componentType]: 'List',
           parent: {
-            [componentType]: 'Blits.App',
+            [componentType]: 'Menu',
+            parent: {
+              [componentType]: 'Blits.App',
+            },
           },
         },
-      },
-    })
-    assert.fail('Parser should throw TemplateParseError:InvalidAttribute')
-  } catch (error) {
-    assert.equal(error.name, 'TemplateParseError', 'Parser should throw TemplateParseError')
-    assert.ok(
-      error.message.startsWith('InvalidAttribute'),
-      'Parser should throw TemplateParseError:InvalidAttribute'
-    )
-    assert.ok(
-      error.message.includes('Blits.App/Menu/List/Section/'),
-      'Error message should contain the component hierarchy without the component name'
-    )
+      })
+      assert.fail('Parser should throw TemplateParseError:InvalidAttribute')
+    } catch (error) {
+      assert.equal(error.name, 'TemplateParseError', 'Parser should throw TemplateParseError')
+      assert.ok(
+        error.message.startsWith('InvalidAttribute'),
+        'Parser should throw TemplateParseError:InvalidAttribute'
+      )
+      assert.ok(
+        error.message.includes('Blits.App/Menu/List/Section/'),
+        'Error message should contain the component hierarchy without the component name'
+      )
+    }
+
+    assert.end()
   }
+)
 
-  assert.end()
-})
-
-test('Parse template with an invalid attribute name by providing component file path and parsing should fail', (assert) => {
-  const template = `
+t.test(
+  'Parse template with an invalid attribute name by providing component file path and parsing should fail',
+  (assert) => {
+    const template = `
   <Element invalid^attribute="hello" />
   `
 
-  try {
-    parser(template, 'Item', null, 'src/components/Menu/List/Section/Item.js')
-    assert.fail('Parser should throw TemplateParseError:InvalidAttribute')
-  } catch (error) {
-    assert.equal(error.name, 'TemplateParseError', 'Parser should throw TemplateParseError')
-    assert.ok(
-      error.message.startsWith('InvalidAttribute'),
-      'Parser should throw TemplateParseError:InvalidAttribute'
-    )
-    assert.ok(
-      error.message.includes('src/components/Menu/List/Section/Item.js'),
-      'Error message should contain the component file path'
-    )
+    try {
+      parser(template, 'Item', null, 'src/components/Menu/List/Section/Item.js')
+      assert.fail('Parser should throw TemplateParseError:InvalidAttribute')
+    } catch (error) {
+      assert.equal(error.name, 'TemplateParseError', 'Parser should throw TemplateParseError')
+      assert.ok(
+        error.message.startsWith('InvalidAttribute'),
+        'Parser should throw TemplateParseError:InvalidAttribute'
+      )
+      assert.ok(
+        error.message.includes('src/components/Menu/List/Section/Item.js'),
+        'Error message should contain the component file path'
+      )
+    }
+
+    assert.end()
   }
+)
 
-  assert.end()
-})
-
-test('Parse template with color and effects attributes and parsing should convert color values', (assert) => {
-  const template = `
+t.test(
+  'Parse template with color and effects attributes and parsing should convert color values',
+  (assert) => {
+    const template = `
       <Element :color="$backgroundColor">
         <Element color="{top: '#44037a', bottom: '#240244'}" />
         <Element color="#44037a" />
@@ -1279,117 +1306,118 @@ test('Parse template with color and effects attributes and parsing should conver
     </Element>
   `
 
-  const expected = {
-    children: [
-      {
-        ':color': '$backgroundColor',
-        [componentType]: 'Element',
-        children: [
-          {
-            color: "{top: '0x44037aff', bottom: '0x240244ff'}",
-            [componentType]: 'Element',
-          },
-          {
-            color: '0x44037aff',
-            [componentType]: 'Element',
-          },
-          {
-            color: "{top: '0x44037aff'}",
-            ':effects': "[$shader('radius', {radius: $radius})]",
-            [componentType]: 'Element',
-          },
-          {
-            ':color': '$colors.color2',
-            ':effects': "[$shader('radius', {radius: $radius / 2})]",
-            [componentType]: 'Element',
-          },
-          {
-            color: '0x00000000',
-            ':effects':
-              "[$shader('radius', {radius: 10}), $shader('border', {width: 20, color: '0x60a5faff'})]",
-            [componentType]: 'Element',
-          },
-          {
-            color: '0xffbbaaff',
-            [componentType]: 'Element',
-          },
-          {
-            color: '0x23dd21ff',
-            [componentType]: 'Element',
-          },
-          {
-            color: '0x993322ff',
-            [componentType]: 'Element',
-          },
-          {
-            color: '0xddddddff',
-            [componentType]: 'Element',
-          },
-          {
-            color: '0xddffaaff',
-            [componentType]: 'Element',
-          },
-          {
-            color: '0xddffaa00',
-            [componentType]: 'Element',
-          },
-          {
-            color: '0xe6e6e6ff',
-            [componentType]: 'Element',
-          },
-          {
-            data: '49b383f',
-            color: '#ddfa',
-            [componentType]: 'Element',
-          },
-          {
-            color: '0xffffff80',
-            [componentType]: 'Element',
-          },
-          {
-            color: '0xffffffff',
-            [componentType]: 'Element',
-          },
-          {
-            color: '0xffffffff',
-            [componentType]: 'Element',
-          },
-          {
-            color: '0x87ceebff',
-            [componentType]: 'Element',
-          },
-          {
-            color: '0x87ceeb00',
-            [componentType]: 'Element',
-          },
-          {
-            color: '0xde7d2cff',
-            [componentType]: 'Element',
-          },
-          {
-            color: '0xccccccff',
-            [componentType]: 'Element',
-          },
-          {
-            notColor: '#dbbeee',
-            [componentType]: 'Element',
-          },
-        ],
-      },
-    ],
+    const expected = {
+      children: [
+        {
+          ':color': '$backgroundColor',
+          [componentType]: 'Element',
+          children: [
+            {
+              color: "{top: '0x44037aff', bottom: '0x240244ff'}",
+              [componentType]: 'Element',
+            },
+            {
+              color: '0x44037aff',
+              [componentType]: 'Element',
+            },
+            {
+              color: "{top: '0x44037aff'}",
+              ':effects': "[$shader('radius', {radius: $radius})]",
+              [componentType]: 'Element',
+            },
+            {
+              ':color': '$colors.color2',
+              ':effects': "[$shader('radius', {radius: $radius / 2})]",
+              [componentType]: 'Element',
+            },
+            {
+              color: '0x00000000',
+              ':effects':
+                "[$shader('radius', {radius: 10}), $shader('border', {width: 20, color: '0x60a5faff'})]",
+              [componentType]: 'Element',
+            },
+            {
+              color: '0xffbbaaff',
+              [componentType]: 'Element',
+            },
+            {
+              color: '0x23dd21ff',
+              [componentType]: 'Element',
+            },
+            {
+              color: '0x993322ff',
+              [componentType]: 'Element',
+            },
+            {
+              color: '0xddddddff',
+              [componentType]: 'Element',
+            },
+            {
+              color: '0xddffaaff',
+              [componentType]: 'Element',
+            },
+            {
+              color: '0xddffaa00',
+              [componentType]: 'Element',
+            },
+            {
+              color: '0xe6e6e6ff',
+              [componentType]: 'Element',
+            },
+            {
+              data: '49b383f',
+              color: '#ddfa',
+              [componentType]: 'Element',
+            },
+            {
+              color: '0xffffff80',
+              [componentType]: 'Element',
+            },
+            {
+              color: '0xffffffff',
+              [componentType]: 'Element',
+            },
+            {
+              color: '0xffffffff',
+              [componentType]: 'Element',
+            },
+            {
+              color: '0x87ceebff',
+              [componentType]: 'Element',
+            },
+            {
+              color: '0x87ceeb00',
+              [componentType]: 'Element',
+            },
+            {
+              color: '0xde7d2cff',
+              [componentType]: 'Element',
+            },
+            {
+              color: '0xccccccff',
+              [componentType]: 'Element',
+            },
+            {
+              notColor: '#dbbeee',
+              [componentType]: 'Element',
+            },
+          ],
+        },
+      ],
+    }
+
+    const actual = parser(template)
+
+    assert.same(
+      actual,
+      expected,
+      'Parser should return object representation of template with color values converted'
+    )
+    assert.end()
   }
+)
 
-  const actual = parser(template)
-
-  assert.same(
-    actual,
-    expected,
-    'Parser should return object representation of template with color values converted'
-  )
-  assert.end()
-})
-
-test('Parse template with :for attribute on root element and parsing should fail', (assert) => {
+t.test('Parse template with :for attribute on root element and parsing should fail', (assert) => {
   const template = `
   <Element :for="item in $items">
     <Text content="$item.name" />
