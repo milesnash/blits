@@ -23,7 +23,7 @@ import util from 'node:util'
 import Settings from './settings.js'
 import { renderer, stage } from './launch.js'
 
-t.beforeEach(initLog)
+initLog()
 
 t.test('Type', (assert) => {
   const expected = 'function'

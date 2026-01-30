@@ -17,6 +17,9 @@
 
 import { test } from 'tap'
 import themePlugin from './theme.js'
+import { initLog } from '../lib/log.js'
+
+initLog()
 
 test('Empty Theme creation', (assert) => {
   const theme = themePlugin.plugin()
@@ -70,6 +73,8 @@ test('Advanced theme creation & usage', (assert) => {
 })
 
 test('Applying theme variant', (assert) => {
+  assert.capture(console, 'info')
+
   const theme = themePlugin.plugin({
     themes: {
       base: {

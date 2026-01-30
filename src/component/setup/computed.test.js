@@ -17,7 +17,7 @@ const assertComputed = (t, component, keyValues) => {
   }
 }
 
-t.beforeEach(initLog)
+initLog()
 
 // --- Tests ---
 
@@ -112,8 +112,14 @@ t.test('Dynamic updates', (t) => {
     { firstName: 'Jane', lastName: 'Smith' }
   )
 
-  assertComputed(t, component, { fullName: 'Jane Smith', description: 'Name: Jane Smith' })
+  assertComputed(t, component, {
+    fullName: 'Jane Smith',
+    description: 'Name: Jane Smith',
+  })
   component.firstName = 'John'
-  assertComputed(t, component, { fullName: 'John Smith', description: 'Name: John Smith' })
+  assertComputed(t, component, {
+    fullName: 'John Smith',
+    description: 'Name: John Smith',
+  })
   t.end()
 })
