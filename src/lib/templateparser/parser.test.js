@@ -1280,6 +1280,7 @@ t.test(
 t.test(
   'Parse template with color and effects attributes and parsing should convert color values',
   (assert) => {
+    const capture = assert.capture(console, 'warn')
     const template = `
       <Element :color="$backgroundColor">
         <Element color="{top: '#44037a', bottom: '#240244'}" />
@@ -1413,6 +1414,15 @@ t.test(
       expected,
       'Parser should return object representation of template with color values converted'
     )
+
+    const logs = capture()
+    assert.equal(logs.length, 2)
+    assert.equal(
+      true,
+      logs.every((log) => log.args.pop() === 'HSL(A) color format is not supported yet'),
+      'Should log warning message about hsla'
+    )
+
     assert.end()
   }
 )
