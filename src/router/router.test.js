@@ -20,6 +20,9 @@ import { matchHash, getHash, to, navigate, state } from './router.js'
 import { stage } from '../launch.js'
 import Component from '../component.js'
 import symbols from '../lib/symbols.js'
+import { initLog } from '../lib/log.js'
+
+initLog()
 
 const mockComponents = {
   Home: () => {},
