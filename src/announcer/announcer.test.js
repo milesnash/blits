@@ -80,7 +80,7 @@ test('Announcer disable/enable/toggle', (assert) => {
 
   // Verify processing behavior after a delay
   setTimeout(() => {
-    assert.false(disabledProcessed, 'Disabled messages are NOT processed')
+    assert.equal(disabledProcessed, false, 'Disabled messages are NOT processed')
     assert.ok(enabledProcessed || enabled1, 'Enabled messages are queued for processing')
 
     // Clean up
