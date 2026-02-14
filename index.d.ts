@@ -694,13 +694,13 @@ declare module '@lightningjs/blits' {
 
     /**
      * Enable or disable RouterView history navigation on Back input
-     * 
+     *
      * @default true
-     * 
+     *
      * @remarks
      * This is an app-wide setting that affects all RouterView instances in your application.
      * The router state is global and shared across all router instances.
-     * 
+     *
      * @example
      * ```js
      * router: {
@@ -1321,7 +1321,7 @@ declare module '@lightningjs/blits' {
     /**
      * Blits Launch
      */
-    Launch(App: ComponentFactory, target: HTMLElement | String, settings?: Settings) : void
+    Launch(App: ComponentFactory, target: HTMLElement | String, settings?: Settings) : { dispose: () => void }
     /**
      * Blits Plugin
      *

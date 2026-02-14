@@ -25,9 +25,13 @@ import { SCREEN_RESOLUTIONS, RENDER_QUALITIES } from '../../constants.js'
 import colors from '../../lib/colors/colors.js'
 import fontLoader from './fontLoader.js'
 import shaderLoader from './shaderLoader.js'
+import { resetAllCounters } from '../../lib/componentId.js'
 
 /** @type {RendererMain|{}} */
 export let renderer = {}
+
+/** @type {import('../../launch.js').BlitsAppComponent} */
+export let app
 
 const renderEngine = (settings) => {
   const renderMode = 'renderMode' in settings ? settings.renderMode : 'webgl'
@@ -107,11 +111,14 @@ export default (App, target, settings = {}) => {
   )
 
   const initApp = () => {
-    let app = App()
+    app = App()
     app.quit = () => {
       Log.info('Closing App')
       app.destroy()
+      resetAllCounters()
       app = null
+
+      renderer.destroyNode(renderer.getNodeById(1))
       renderer = null
     }
   }

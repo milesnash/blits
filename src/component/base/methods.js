@@ -110,7 +110,7 @@ export default {
 
       // when destroying a component that currently has focus
       // pass focus to the parent so we don't get lost in focus limbo
-      if (this.hasFocus === true) this.parent.$focus()
+      if (this.hasFocus === true && this.parent) this.parent.$focus()
 
       // @todo - is this really necessary?
       // This cause an issue with auto sizing of parent (and required an extra eol check there)
@@ -164,7 +164,7 @@ export default {
       delete this.ref
       delete this[symbols.state].hasFocus
 
-      this[symbols.holder].destroy()
+      this[symbols.holder]?.destroy()
       this[symbols.holder] = null
       delete this[symbols.holder]
 

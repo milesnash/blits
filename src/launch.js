@@ -19,6 +19,7 @@ import Settings from './settings.js'
 import { initLog, Log } from './lib/log.js'
 import engine from './engine.js'
 import blitsPackageInfo from '../package.json' with { type: 'json' }
+import { app } from './engines/L3/launch.js'
 
 /**
  * @typedef {Object} Font
@@ -106,7 +107,8 @@ async function rendererVersion() {
  * @param {BlitsAppFactory} App - The root BlitsComponent to launch.
  * @param {HTMLElement} target - The DOM element or rendering target.
  * @param {BlitsSettings} settings - Configuration settings for the application.
- * @returns {void}
+ *
+ * @returns {{ dispose: () => void }} - Used to close and dispose of the app and renderer (mainly for testing purposes)
  */
 export default (App, target, settings) => {
   Settings.set(settings)
@@ -121,4 +123,8 @@ export default (App, target, settings) => {
   stage.element = engine.Element
 
   renderer = engine.Launch(App, target, settings)
+
+  return {
+    dispose: app.quit,
+  }
 }

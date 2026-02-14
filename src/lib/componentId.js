@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-const counters = {}
+let counters = {}
 let counter = 0
 
 /**
@@ -39,11 +39,31 @@ export const createInternalId = () => {
 
 /**
  * Resets the internal counter value back to 0.
- * Used in automated tests to ensure consistent results, not intended
- * to be used in the actual framework code!
+ * Used in automated tests and on app quit to ensure a consistent environment.
  *
  * @returns {void}
  */
 export const resetCounter = () => {
   counter = 0
+}
+
+/**
+ * Resets the internal component counters back to 0.
+ * Used in automated tests and on app quit to ensure a consistent environment.
+ *
+ * @returns {void}
+ */
+export const resetCounters = () => {
+  counters = {}
+}
+
+/**
+ * Resets all the internal counters back to 0.
+ * Used in automated tests and on app quit to ensure a consistent environment.
+ *
+ * @returns {void}
+ */
+export const resetAllCounters = () => {
+  resetCounter()
+  resetCounters()
 }
