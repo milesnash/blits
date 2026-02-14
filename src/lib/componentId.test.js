@@ -16,7 +16,13 @@
  */
 
 import test from 'tape'
-import { createHumanReadableId, createInternalId, resetCounter } from './componentId.js'
+import {
+  createHumanReadableId,
+  createInternalId,
+  resetCounter,
+  resetCounters,
+  resetAllCounters,
+} from './componentId.js'
 
 test('Type createHumandReadableId', (assert) => {
   const expected = 'function'
@@ -39,6 +45,28 @@ test('Returns a readable id with incremented count', (assert) => {
   const actual = createHumanReadableId('Spinner')
 
   assert.equal(actual, expected, 'createHumanReadableId should return correct ID')
+  assert.end()
+})
+
+test('Clears counters', (assert) => {
+  let nextID = createHumanReadableId('Spinner')
+
+  assert.equal(
+    nextID,
+    'BlitsComponent::Spinner_3',
+    'createHumanReadableId should return correct ID'
+  )
+
+  resetCounters()
+
+  nextID = createHumanReadableId('Spinner')
+
+  assert.equal(
+    nextID,
+    'BlitsComponent::Spinner_1',
+    'createHumanReadableId should return correct ID'
+  )
+
   assert.end()
 })
 
@@ -80,5 +108,33 @@ test('Uses the same counter for all components', (assert) => {
   const actual = createInternalId('Card')
 
   assert.equal(actual, expected, 'createInternalId should return correct ID')
+  assert.end()
+})
+
+test('Clears all counters', (assert) => {
+  resetAllCounters()
+
+  let nextID = createHumanReadableId('Spinner')
+  let nextInternalID = createInternalId()
+
+  assert.equal(
+    nextID,
+    'BlitsComponent::Spinner_1',
+    'createHumanReadableId should return correct ID'
+  )
+  assert.equal(nextInternalID, 1, 'createInternalId should return correct ID')
+
+  resetAllCounters()
+
+  nextID = createHumanReadableId('Spinner')
+  nextInternalID = createInternalId()
+
+  assert.equal(
+    nextID,
+    'BlitsComponent::Spinner_1',
+    'createHumanReadableId should return correct ID'
+  )
+  assert.equal(nextInternalID, 1, 'createInternalId should return correct ID')
+
   assert.end()
 })
