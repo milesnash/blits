@@ -13,8 +13,8 @@
   "types": "./index.d.ts",
   "exports": {
     ".": "./index.js",
-    "./enhanced": {
-      "types": "./enhanced.d.ts"
+    "./enhanced-types": {
+      "types": "./types/modes/enhanced-mode.d.ts"
     },
     "./platforms": {
       "types": "./src/platforms.d.ts",

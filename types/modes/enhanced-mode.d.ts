@@ -15,11 +15,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import "./types/mode";
+import "./legacy-mode.d.ts";
 
 declare global {
   interface BlitsTypeSystem {
-    mode: "modern";
+    mode: "enhanced";
   }
 }
 
