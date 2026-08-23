@@ -2,9 +2,20 @@
   "name": "@lightningjs/blits",
   "version": "2.8.9",
   "description": "Blits: The Lightning 3 App Development Framework",
+  "license": "Apache-2.0",
+  "author": "Michiel van der Geest <hello@michielvandergeest.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lightning-js/blits.git"
+  },
   "bin": "bin/index.js",
+  "type": "module",
+  "types": "./index.d.ts",
   "exports": {
     ".": "./index.js",
+    "./enhanced": {
+      "types": "./enhanced.d.ts"
+    },
     "./platforms": {
       "types": "./src/platforms.d.ts",
       "default": "./src/platforms.js"
@@ -56,15 +67,10 @@
     "pack-preview": "npm pack --dry-run",
     "release": "npm publish --access public"
   },
-  "types": "./index.d.ts",
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix"
-    ]
+  "dependencies": {
+    "@lightningjs/renderer": "3.3.1",
+    "magic-string": "^0.30.21"
   },
-  "type": "module",
-  "author": "Michiel van der Geest <hello@michielvandergeest.com>",
-  "license": "Apache-2.0",
   "devDependencies": {
     "@babel/eslint-parser": "^7.26.5",
     "@babel/plugin-syntax-import-assertions": "^7.26.0",
@@ -86,12 +92,9 @@
     "tap-filter": "^1.0.3",
     "tape": "^5.5.0"
   },
-  "dependencies": {
-    "@lightningjs/renderer": "3.3.1",
-    "magic-string": "^0.30.21"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/lightning-js/blits.git"
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix"
+    ]
   }
 }
