@@ -18,7 +18,7 @@
 import "./types/mode";
 
 declare global {
-  interface BlitsTypeConfig {
+  interface BlitsTypeSystem {
     mode: "modern";
   }
 }
