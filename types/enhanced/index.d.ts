@@ -29,11 +29,11 @@ import { Watch } from "./watch";
 
 export interface Blits {
   Component<
-    Props = BaseRecord,
-    State = BaseRecord,
-    Computed = FnMap,
-    ComputedProps = ComputedReturnTypes<Computed>,
-    Methods = FnMap,
+    Props extends BaseRecord = BaseRecord,
+    State extends BaseRecord = BaseRecord,
+    Computed extends FnMap = FnMap,
+    ComputedProps extends ComputedReturnTypes<Computed> = ComputedReturnTypes<Computed>,
+    Methods extends FnMap = FnMap,
   >(
     name: string,
     config: {

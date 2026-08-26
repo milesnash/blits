@@ -17,7 +17,7 @@
 
 import { BaseRecord } from "./core";
 
-export interface Hooks<This = BaseRecord> {
+export interface Hooks<This extends BaseRecord = BaseRecord> {
   /**
    * Fires when the Component is being instantiated
    * At this moment child elements will not be available yet

@@ -17,7 +17,7 @@
 
 import { BaseRecord } from "./core";
 
-export interface Input<This = BaseRecord> {
+export interface Input<This extends BaseRecord = BaseRecord> {
   /**
    * "key" is "any" if the handler is a catch-all handler,
    * else it is the name of the event being handled

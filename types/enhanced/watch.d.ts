@@ -17,6 +17,9 @@
 
 import { BaseRecord } from "./core";
 
-export type Watch<This = BaseRecord, Watchables = BaseRecord> = {
+export type Watch<
+  This extends BaseRecord = BaseRecord,
+  Watchables extends BaseRecord = BaseRecord,
+> = {
   [K in keyof Watchables]?: (this: This, newValue: Watchables[K], oldValues: Watchables[K]) => void;
 };
