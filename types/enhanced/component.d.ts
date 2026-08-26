@@ -15,4 +15,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export {};
+export type BaseRecord = Record<string, unknown>;
+
+export type PartialReadonly<T> = Readonly<Partial<T>>;
+
+export type StateFn<This, Return = unknown> = (this: This) => Return;
+
+export type ComputedReturnTypes<T> = {
+  [K in keyof T]: T[K] extends (...args: unknown[]) => infer R ? R : never;
+};
+
+export type FnMap = Record<string, (...args: unknown[]) => unknown>;
+
+export type ConfigFnsMap<This, OwnProps> = ThisType<This> & OwnProps;

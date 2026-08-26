@@ -18,7 +18,9 @@
 // blits file type reference
 /// <reference path="./blits.d.ts" />
 
+import "./types/modes/legacy-mode.d.ts";
 import * as Legacy from "./types/legacy.d.ts";
+import * as Enhanced from "./types/enhanced";
 
 declare module "@lightningjs/blits" {
   export type AnnouncerUtteranceOptions = BlitsTypeSystem extends { mode: "enhanced" }
@@ -91,7 +93,7 @@ declare module "@lightningjs/blits" {
   export type RouteHooks = BlitsTypeSystem extends { mode: "enhanced" } ? never : Legacy.RouteHooks;
   export type Route = BlitsTypeSystem extends { mode: "enhanced" } ? never : Legacy.Route;
   export type Settings = BlitsTypeSystem extends { mode: "enhanced" } ? never : Legacy.Settings;
-  export type Blits = BlitsTypeSystem extends { mode: "enhanced" } ? never : Legacy.Blits;
+  export type Blits = BlitsTypeSystem extends { mode: "enhanced" } ? Enhanced.Blits : Legacy.Blits;
 
   const Blits: Blits;
 
