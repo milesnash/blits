@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { BaseRecord } from "./component";
+import { BaseRecord } from "./core";
 
 export interface Input<This = BaseRecord> {
   /**

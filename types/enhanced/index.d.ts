@@ -22,7 +22,7 @@ import {
   FnMap,
   PartialReadonly,
   StateFn,
-} from "./component";
+} from "./core";
 import { Hooks } from "./hooks";
 import { Input } from "./input";
 import { Watch } from "./watch";

@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { BaseRecord } from "./component";
+import { BaseRecord } from "./core";
 
 export type Watch<This = BaseRecord, Watchables = BaseRecord> = {
   [K in keyof Watchables]?: (this: This, newValue: Watchables[K], oldValues: Watchables[K]) => void;
