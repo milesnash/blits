@@ -15,16 +15,18 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export type BaseRecord = Record<string, unknown>;
+import { BaseRecord } from "./component";
 
-export type PartialReadonly<T> = Readonly<Partial<T>>;
-
-export type StateFn<This, Return> = (this: This) => Return;
-
-export type ComputedReturnTypes<T> = {
-  [K in keyof T]: T[K] extends (...args: unknown[]) => infer R ? R : never;
-};
-
-export type FnMap = Record<string, (...args: unknown[]) => unknown>;
-
-export type ConfigFnsMap<This, OwnProps> = ThisType<This> & OwnProps;
+export interface Input<This = BaseRecord> {
+  /**
+   * "key" is "any" if the handler is a catch-all handler,
+   * else it is the name of the event being handled
+   *
+   * The handler handles the "keyup" event. If a handler is
+   * returned, then it handles the "keydown" event.
+   */
+  [key: "any" | string]: (
+    this: This,
+    event: KeyboardEvent,
+  ) => void | ((event: KeyboardEvent) => void);
+}

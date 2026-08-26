@@ -23,6 +23,9 @@ import {
   PartialReadonly,
   StateFn,
 } from "./component";
+import { Hooks } from "./hooks";
+import { Input } from "./input";
+import { Watch } from "./watch";
 
 export interface Blits {
   Component<
@@ -45,9 +48,12 @@ export interface Blits {
       methods?: ConfigFnsMap<Readonly<Props & State & ComputedProps>, Methods>;
 
       // Listener config
-      // TODO: hooks
-      // TODO: input
-      // TODO: watch
+      hooks?: Hooks<Readonly<Props & State & ComputedProps & Methods>>;
+      input?: Input<Readonly<Props & State & ComputedProps & Methods>>;
+      watch?: Watch<
+        Readonly<Props & State & ComputedProps & Methods>,
+        Readonly<Props & State & ComputedProps>
+      >;
     },
   ): void;
 }

@@ -15,16 +15,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export type BaseRecord = Record<string, unknown>;
+import { BaseRecord } from "./component";
 
-export type PartialReadonly<T> = Readonly<Partial<T>>;
-
-export type StateFn<This, Return> = (this: This) => Return;
-
-export type ComputedReturnTypes<T> = {
-  [K in keyof T]: T[K] extends (...args: unknown[]) => infer R ? R : never;
+export type Watch<This = BaseRecord, Watchables = BaseRecord> = {
+  [K in keyof Watchables]?: (this: This, newValue: Watchables[K], oldValues: Watchables[K]) => void;
 };
-
-export type FnMap = Record<string, (...args: unknown[]) => unknown>;
-
-export type ConfigFnsMap<This, OwnProps> = ThisType<This> & OwnProps;
