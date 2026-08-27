@@ -23,6 +23,7 @@ import {
   PartialReadonly,
   StateFn,
 } from "./core";
+import { ComponentBase, Handler } from "./component/base";
 import { Events } from "./component/events";
 import { Hooks } from "./hooks";
 import { Input } from "./input";
@@ -49,17 +50,22 @@ export interface Blits<
       props?: Props;
       state?: StateFn<PartialReadonly<Props>, State>;
       computed?: ConfigFnsMap<PartialReadonly<Props & State>, Computed>;
-      methods?: ConfigFnsMap<Readonly<AppEvents & Props & State & ComputedProps>, Methods>;
+      methods?: ConfigFnsMap<
+        Readonly<ComponentBase<State> & AppEvents & Props & State & ComputedProps>,
+        Methods
+      >;
 
       // Listener config
-      hooks?: Hooks<Readonly<AppEvents & Props & State & ComputedProps & Methods>>;
-      input?: Input<Readonly<Props & State & ComputedProps & Methods>>;
+      hooks?: Hooks<
+        Readonly<ComponentBase<State> & AppEvents & Props & State & ComputedProps & Methods>
+      >;
+      input?: Input<Readonly<ComponentBase<State> & Props & State & ComputedProps & Methods>>;
       watch?: Watch<
-        Readonly<Props & State & ComputedProps & Methods>,
+        Readonly<ComponentBase<State> & Props & State & ComputedProps & Methods>,
         Readonly<Props & State & ComputedProps>
       >;
     },
-  ): void;
+  ): Handler;
 
   configure<EventRegistry extends BaseRecord = BaseRecord>(): Blits<EventRegistry>;
 }
