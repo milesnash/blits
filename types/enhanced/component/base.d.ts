@@ -16,8 +16,7 @@
  */
 
 import { BaseRecord } from "../core";
-import { Interval } from "./interval";
-import { Timeout } from "./timeout";
+import { Scheduling } from "./scheduling";
 
 /**
  * Pass focus to other Component; optionally with an event
@@ -59,6 +58,6 @@ interface Trigger<State extends BaseRecord = BaseRecord> {
  * The basic built-ins of a Component
  */
 export interface ComponentBase<State extends BaseRecord = BaseRecord>
-  extends Handler, Select, Trigger<State>, Interval, Timeout {
+  extends Handler, Select, Trigger<State>, Scheduling {
   $parent: Handler;
 }
