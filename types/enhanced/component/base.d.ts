@@ -15,6 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { Announcer } from "./announcer";
 import { BaseRecord } from "../core";
 import { Scheduling } from "./scheduling";
 
@@ -59,5 +60,6 @@ interface Trigger<State extends BaseRecord = BaseRecord> {
  */
 export interface ComponentBase<State extends BaseRecord = BaseRecord>
   extends Handler, Select, Trigger<State>, Scheduling {
+  $announcer: Announcer;
   $parent: Handler;
 }
