@@ -19,7 +19,7 @@ export interface Timeout {
   /**
    * Set a timeout that is automatically cleaned upon component destroy
    */
-  $setTimeout: <Cb extends (args: unknown) => void>(
+  $setTimeout: <Cb extends (...args: unknown[]) => void>(
     callback: Cb,
     ms?: number | undefined,
   ) => ReturnType<Window["setTimeout"]>;

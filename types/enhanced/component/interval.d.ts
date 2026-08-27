@@ -19,7 +19,7 @@ export interface Interval {
   /**
    * Set an interval that is automatically cleaned upon component destroy
    */
-  $setInterval: <Cb extends (args: unknown) => void>(
+  $setInterval: <Cb extends (...args: unknown[]) => void>(
     callback: Cb,
     ms?: number | undefined,
   ) => ReturnType<Window["setInterval"]>;
