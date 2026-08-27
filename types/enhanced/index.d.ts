@@ -23,7 +23,7 @@ import {
   PartialReadonly,
   StateFn,
 } from "./core";
-import { ComponentBase, Handler } from "./component/base";
+import { ComponentBase, Handler as ComponentInstance } from "./component/base";
 import { Events } from "./component/events";
 import { Hooks } from "./hooks";
 import { Input } from "./input";
@@ -43,7 +43,7 @@ export interface Blits<
     name: string,
     config: {
       // Templating config
-      // TODO: components?: Components;
+      components?: Record<string, ComponentInstance>;
       template?: string;
 
       // Value provider config
@@ -65,7 +65,7 @@ export interface Blits<
         Readonly<Props & State & ComputedProps>
       >;
     },
-  ): Handler;
+  ): ComponentInstance;
 
   configure<EventRegistry extends BaseRecord = BaseRecord>(): Blits<EventRegistry>;
 }
