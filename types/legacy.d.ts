@@ -263,6 +263,7 @@ export interface Input {
   intercept?: (event: KeyboardEvent) => KeyboardEvent | Promise<KeyboardEvent | any> | any;
 }
 
+// TODO: enhanced
 export interface Log {
   /**
    * Log an info message
@@ -340,6 +341,7 @@ type MutualExclusiveRouteOpts =
     };
 export type RouteOptions = ConcurrentRouteOpts & MutualExclusiveRouteOpts;
 
+// TODO: enhanced
 export interface Router {
   /**
    * Navigate to a different location
@@ -436,6 +438,7 @@ export interface ComponentBase extends CustomComponentProperties {
    *
    * @returns Boolean
    */
+  // TODO: enhanced
   $isHovered: boolean;
 
   /**
@@ -528,6 +531,7 @@ export interface ComponentBase extends CustomComponentProperties {
    */
   $clearInterval: (id: ReturnType<typeof setInterval>) => void;
 
+  // TODO: enhanced
   /**
    * Log to the console with prettier output and configurable debug levels in Settings
    */
@@ -569,10 +573,12 @@ export interface ComponentBase extends CustomComponentProperties {
    * Triggers a forced update on state variables.
    */
   $trigger: (key: string) => void;
+  // TODO: enhanced
   /**
    * Router instance
    */
   $router: Router;
+  // TODO: enhanced
   /**
    * Creates a reactive object. Changes to properties on the returned object
    * will automatically trigger re-renders in any component that accesses them.
@@ -1501,6 +1507,7 @@ interface Plugin {
  * Blits App Framework
  */
 export interface Blits {
+  // TODO: enhanced
   /**
    * Blits Application
    * @param {ApplicationConfig} config - Application Configuration object
@@ -1529,10 +1536,12 @@ export interface Blits {
     name: string,
     config: ComponentConfig<P, S, M, C, W>,
   ): ComponentFactory;
+  // TODO: enhanced
   /**
    * Blits Launch
    */
   Launch(App: ComponentFactory, target: HTMLElement | string, settings?: Settings): void;
+  // TODO: enhanced
   /**
    * Blits Plugin
    *
