@@ -25,9 +25,9 @@ import {
 } from "./core";
 import { ComponentBase, Handler as ComponentInstance } from "./component/base";
 import { Events } from "./component/events";
-import { Hooks } from "./hooks";
-import { Input } from "./input";
-import { Watch } from "./watch";
+import { Hooks } from "./component/hooks";
+import { Input } from "./component/input";
+import { Watch } from "./component/watch";
 
 export interface Blits<
   EventRegistry extends BaseRecord = BaseRecord,
