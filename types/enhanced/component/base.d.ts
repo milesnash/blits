@@ -17,7 +17,7 @@
 
 import { Announcer } from "./announcer";
 import { BaseRecord } from "../core";
-import { Methods } from "./methods";
+import { Handler, Methods } from "./methods";
 import { PluginInstance } from "../plugin";
 import { LogPlugin } from "../plugins/log";
 import { Scheduling } from "./scheduling";
@@ -25,7 +25,8 @@ import { Scheduling } from "./scheduling";
 /**
  * The basic built-ins of a Component
  */
-export interface ComponentBase<State extends BaseRecord = BaseRecord> extends Methods, Scheduling {
+export interface ApplicationBase<State extends BaseRecord = BaseRecord>
+  extends Methods, Scheduling {
   /**
    * Announcer methods for screen reader support
    */
@@ -35,11 +36,6 @@ export interface ComponentBase<State extends BaseRecord = BaseRecord> extends Me
    * Log plugin is automatically available
    */
   readonly $log: PluginInstance<LogPlugin>;
-
-  /**
-   * The parent Component
-   */
-  readonly $parent: Handler;
 
   /**
    * Indicates whether the component currently has focus
@@ -66,4 +62,13 @@ export interface ComponentBase<State extends BaseRecord = BaseRecord> extends Me
      */
     h: number;
   }) => void;
+}
+
+export interface ComponentBase<
+  State extends BaseRecord = BaseRecord,
+> extends ApplicationBase<State> {
+  /**
+   * The parent Component
+   */
+  readonly $parent: Handler;
 }

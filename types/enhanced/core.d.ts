@@ -15,6 +15,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+// Used to pass things like props around the type system without being accessible to code
+export declare const internal: unique symbol;
+
 export type BaseRecord = Record<string, unknown>;
 
 export type PartialReadonly<T> = Readonly<Partial<T>>;
@@ -22,9 +25,9 @@ export type PartialReadonly<T> = Readonly<Partial<T>>;
 export type StateFn<This, Return> = (this: This) => Return;
 
 export type ComputedReturnTypes<T> = {
-  [K in keyof T]: T[K] extends (...args: unknown[]) => infer R ? R : never;
+  [K in keyof T]: T[K] extends (...args: never[]) => infer R ? R : never;
 };
 
-export type FnMap = Record<string, (...args: unknown[]) => unknown>;
+export type FnMap = Record<string, (...args: any) => any>;
 
 export type ConfigFnsMap<This, OwnProps> = ThisType<This> & OwnProps;

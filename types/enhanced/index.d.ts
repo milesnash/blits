@@ -22,17 +22,82 @@ import {
   FnMap,
   PartialReadonly,
   StateFn,
+  internal,
 } from "./core";
-import { ComponentBase, Handler as ComponentInstance } from "./component/base";
+import { ApplicationBase, ComponentBase } from "./component/base";
 import { Events } from "./component/events";
 import { Hooks } from "./component/hooks";
 import { Input } from "./component/input";
+import { Handler as ComponentInstance } from "./component/methods";
 import { Watch } from "./component/watch";
+import { RouterConfig, Route } from "./router";
 
 export interface Blits<
   EventRegistry extends BaseRecord = BaseRecord,
   AppEvents extends Events = Events<EventRegistry>,
 > {
+  Application<
+    Props extends BaseRecord = BaseRecord,
+    State extends BaseRecord = BaseRecord,
+    Computed extends FnMap = FnMap,
+    ComputedProps extends ComputedReturnTypes<Computed> = ComputedReturnTypes<Computed>,
+    Methods extends FnMap = FnMap,
+  >(
+    config: {
+      // Templating config
+      components?: Record<string, ComponentInstance>;
+      template?: string;
+
+      // Value provider config
+      props?: Props;
+      state?: StateFn<ApplicationBase & PartialReadonly<Props>, State>;
+      computed?: ConfigFnsMap<ApplicationBase<State> & PartialReadonly<Props & State>, Computed>;
+      methods?: ConfigFnsMap<
+        Readonly<ApplicationBase<State> & AppEvents & Props & ComputedProps> & State,
+        Methods
+      >;
+
+      // Listener config
+      hooks?: Hooks<
+        Readonly<ApplicationBase<State> & AppEvents & Props & ComputedProps & Methods> & State
+      >;
+      input?: Input<Readonly<ApplicationBase<State> & Props & ComputedProps & Methods> & State>;
+      watch?: Watch<
+        Readonly<ApplicationBase<State> & Props & ComputedProps & Methods> & State,
+        Readonly<Props & State & ComputedProps>
+      >;
+    } & (
+      | {
+          /**
+           * Router Configuration
+           */
+          router?: RouterConfig<
+            Readonly<ApplicationBase<State> & Props & ComputedProps & Methods> & State
+          >;
+          routes?: never;
+        }
+      | {
+          router?: never;
+          /**
+           * Routes definition
+           *
+           * @example
+           *
+           * ```js
+           * routes: [
+           *  { path: '/', component: Home },
+           *  { path: '/details', component: Details },
+           *  { path: '/account', component: Account },
+           * ]
+           * ```
+           */
+          routes?: Route<
+            Readonly<ApplicationBase<State> & Props & ComputedProps & Methods> & State
+          >[];
+        }
+    ),
+  ): void;
+
   Component<
     Props extends BaseRecord = BaseRecord,
     State extends BaseRecord = BaseRecord,
@@ -51,21 +116,21 @@ export interface Blits<
       state?: StateFn<ComponentBase & PartialReadonly<Props>, State>;
       computed?: ConfigFnsMap<ComponentBase<State> & PartialReadonly<Props & State>, Computed>;
       methods?: ConfigFnsMap<
-        Readonly<ComponentBase<State> & AppEvents & Props & State & ComputedProps>,
+        Readonly<ComponentBase<State> & AppEvents & Props & ComputedProps> & State,
         Methods
       >;
 
       // Listener config
       hooks?: Hooks<
-        Readonly<ComponentBase<State> & AppEvents & Props & State & ComputedProps & Methods>
+        Readonly<ComponentBase<State> & AppEvents & Props & ComputedProps & Methods> & State
       >;
-      input?: Input<Readonly<ComponentBase<State> & Props & State & ComputedProps & Methods>>;
+      input?: Input<Readonly<ComponentBase<State> & Props & ComputedProps & Methods> & State>;
       watch?: Watch<
-        Readonly<ComponentBase<State> & Props & State & ComputedProps & Methods>,
+        Readonly<ComponentBase<State> & Props & ComputedProps & Methods> & State,
         Readonly<Props & State & ComputedProps>
       >;
     },
-  ): ComponentInstance;
+  ): ComponentInstance & { [internal]: { props: Props } };
 
   configure<EventRegistry extends BaseRecord = BaseRecord>(): Blits<EventRegistry>;
 }

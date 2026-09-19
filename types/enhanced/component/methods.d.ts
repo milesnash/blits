@@ -34,6 +34,11 @@ interface Input {
 }
 
 /**
+ * Parts of the Component methods for handling
+ */
+export interface Handler extends Focus, Input {}
+
+/**
  * Select a Component by reference
  */
 interface Select {
@@ -52,4 +57,4 @@ interface Trigger<State extends BaseRecord = BaseRecord> {
  * The basic built-in methods of a Component
  */
 export interface Methods<State extends BaseRecord = BaseRecord>
-  extends Focus, Input, Select, Trigger<State> {}
+  extends Handler, Select, Trigger<State> {}
