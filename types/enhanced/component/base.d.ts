@@ -17,53 +17,24 @@
 
 import { Announcer } from "./announcer";
 import { BaseRecord } from "../core";
+import { Methods } from "./methods";
+import { PluginInstance } from "../plugin";
+import { LogPlugin } from "../plugins/log";
 import { Scheduling } from "./scheduling";
-
-/**
- * Pass focus to other Component; optionally with an event
- */
-interface Focus {
-  $focus(evt?: KeyboardEvent): void;
-}
-
-/**
- * Have another Component process input
- *
- * @returns {boolean} true if a handler was found and handled the input.
- */
-interface Input {
-  $input(evt?: KeyboardEvent): boolean;
-}
-
-/**
- * Methods of the Component for handling
- */
-export interface Handler extends Focus, Input {}
-
-/**
- * Select a Component by reference
- */
-interface Select {
-  $select(ref: string): Handler | undefined;
-}
-
-/**
- * Trigger reactivity related to a state property, even when
- * the property has not changed value
- */
-interface Trigger<State extends BaseRecord = BaseRecord> {
-  $trigger(key: keyof State): void;
-}
 
 /**
  * The basic built-ins of a Component
  */
-export interface ComponentBase<State extends BaseRecord = BaseRecord>
-  extends Handler, Select, Trigger<State>, Scheduling {
+export interface ComponentBase<State extends BaseRecord = BaseRecord> extends Methods, Scheduling {
   /**
    * Announcer methods for screen reader support
    */
   readonly $announcer: Announcer;
+
+  /**
+   * Log plugin is automatically available
+   */
+  readonly $log: PluginInstance<LogPlugin>;
 
   /**
    * The parent Component
